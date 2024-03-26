@@ -103,8 +103,6 @@ export const RefreshToken = async (req, res) => {
       if (err) return res.status(403).json({ message: 'Hak akses anda sudah kadaluarsa!' });
       // const { id, uuid, role } = response;
       const { id, uuid, role } = decoded;
-      // console.log(`decoded:`, decoded);
-      // console.log(`response:`, response);
       const accessToken = jwt.sign({ id, uuid, role }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '60s' });
       res.json({ accessToken });
     });
