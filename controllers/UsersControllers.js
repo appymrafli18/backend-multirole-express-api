@@ -6,7 +6,7 @@ import fs from 'fs';
 export const getUsers = async (req, res) => {
   try {
     const response = await User.findAll({
-      attributes: ['uuid', 'nm_user', 'username', 'email_user', 'image_user', 'url_user', 'role'],
+      attributes: ['uuid', 'nm_user', 'username', 'email_user', 'image_user', 'url_user', 'password', 'role'],
     });
 
     res.status(200).json({
@@ -24,7 +24,7 @@ export const getUsers = async (req, res) => {
 export const getUsersById = async (req, res) => {
   try {
     const response = await User.findOne({
-      attributes: ['uuid', 'nm_user', 'username', 'email_user', 'image_user', 'url_user', 'role'],
+      attributes: ['uuid', 'nm_user', 'username', 'email_user', 'image_user', 'url_user', 'password', 'role'],
       where: {
         uuid: req.params.id,
       },
@@ -93,6 +93,9 @@ export const createUsers = async (req, res) => {
       });
     }
   });
+
+  // console.log(`File:`, file);
+  // console.log(`Req Files:`, req.files);
 };
 
 export const updateUsers = async (req, res) => {
